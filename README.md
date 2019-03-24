@@ -1,34 +1,15 @@
-## Build generated
-build/
-DerivedData
-build.xcarchive
+# Movie Database tvOS App
 
-## Various settings
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
+![Alt text](./promo1.png?raw=true "Movie Info 1")
+![Alt text](./promo2.png?raw=true "Movie Info 1")
 
-## Other
-*.xccheckout
-*.moved-aside
-*.xcuserstate
-*.xcscmblueprint
+Movie Database tvOS App using The Movie DB API
 
-## Obj-C/Swift specific
-*.hmap
-*.ipa
+## Getting Started
 
-# CocoaPods
-Pods/
-
-# Carthage
-Carthage/Checkouts
-Carthage/Build
-
-.DS_Storef
+- Clone
+- Install Xcode 10
+- Get the API Key from https://developers.themoviedb.org/3/
+- Put API Key in MovieService.swift apiKey constant
+- pod install
+- Build & Run
