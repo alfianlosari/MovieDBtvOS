@@ -12,7 +12,7 @@ public class MovieStore: MovieService {
     
     public static let shared = MovieStore()
     private init() {}
-    private let apiKey = "INSERT_API_KEY_HERE"
+    private let apiKey = "YOUR API KEY"
     private let baseAPIURL = "https://api.themoviedb.org/3"
     private let urlSession = URLSession.shared
     

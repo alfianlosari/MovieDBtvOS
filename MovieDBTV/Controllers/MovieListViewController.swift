@@ -64,7 +64,6 @@ class MovieListViewController: UIViewController {
 
 extension MovieListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
@@ -88,22 +87,24 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
 extension MovieListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
+        movies = []
+
+        guard let text = searchController.searchBar.text, !text.isEmpty else {
             return
         }
         
-        if text.isEmpty {
-            movies = []
-            collectionView.reloadData()
-        } else {
-            movieService.searchMovie(query: text, params: nil, successHandler: {[unowned self] (response) in
-                if searchController.searchBar.text == text {
-                    self.movies = response.results
-                }
-            }) { (error) in
-                print(error.localizedDescription)
-            }
+        activityIndicator.startAnimating()
+        hideError()
+        
+        movieService.searchMovie(query: text, params: nil, successHandler: {[unowned self] (response) in
+            self.activityIndicator.stopAnimating()
             
+            if searchController.searchBar.text == text {
+                self.movies = response.results
+            }
+        }) { [unowned self] (error) in
+            self.activityIndicator.stopAnimating()
+            self.showError(error.localizedDescription)
         }
         
     }

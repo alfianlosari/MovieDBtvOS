@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             movieVC.title = endpoint.description
             return movieVC
         }
-        
+    
         viewControllers.append(createSearch(storyboard: tabBarController.storyboard))
         
         tabBarController.viewControllers = viewControllers
@@ -34,12 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func createSearch(storyboard: UIStoryboard?) -> UIViewController {
-        guard let newsController = storyboard?.instantiateViewController(withIdentifier: "MovieListViewController") as? MovieListViewController else {
+        guard let movieListController = storyboard?.instantiateViewController(withIdentifier: "MovieListViewController") as? MovieListViewController else {
             fatalError("Unable to instantiate a NewsController")
         }
         
-        let searchController = UISearchController(searchResultsController: newsController)
-        searchController.searchResultsUpdater = newsController
+        let searchController = UISearchController(searchResultsController: movieListController)
+        searchController.searchResultsUpdater = movieListController
         
         let searchContainer = UISearchContainerViewController(searchController: searchController)
         searchContainer.title = "Search"
